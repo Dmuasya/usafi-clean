@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "592919382240",
+    "firebase_url": "https://ssafi-c4fa1.firebaseio.com",
+    "project_id": "ssafi-c4fa1",
+    "storage_bucket": "ssafi-c4fa1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592919382240:android:aadad1bab9caf290e7a885",
+        "android_client_info": {
+          "package_name": "com.dennis.usaficustomer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592919382240-jv9ok6poa65le1mnnqnvati3rjggp7h6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dennis.usaficustomer",
+            "certificate_hash": "66a0130fd8d87e1693c4430de2b03067df3c2ad2"
+          }
+        },
+        {
+          "client_id": "592919382240-td84le7ob3dj7ff4ha59hk2e7mr00t0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzmJc7t2zVxij4DFtLXmvjWsy-sAhXj2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592919382240-td84le7ob3dj7ff4ha59hk2e7mr00t0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
