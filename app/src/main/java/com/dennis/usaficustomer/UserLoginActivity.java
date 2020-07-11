@@ -55,7 +55,7 @@ public class UserLoginActivity extends AppCompatActivity {
         userPass = (EditText) findViewById(R.id.user_login_pass);
         needNewAccount = (TextView) findViewById(R.id.user_login_edit_text);
         loadingBar = new ProgressDialog(this);
-        googleSignInButton = (Button) findViewById(R.id.user_login_google_button);
+//        googleSignInButton = (Button) findViewById(R.id.user_login_google_button);
 
         needNewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,12 +79,12 @@ public class UserLoginActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
-        googleSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
+//        googleSignInButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                signIn();
+//            }
+//        });
 
     }
 

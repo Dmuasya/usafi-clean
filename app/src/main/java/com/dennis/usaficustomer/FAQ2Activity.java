@@ -16,6 +16,6 @@ public class FAQ2Activity extends AppCompatActivity {
         //adding toolbar in main activity
         mToolbar = (Toolbar) findViewById(R.id.faq_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Digital Laundry FAQs");
+        getSupportActionBar().setTitle("Usafi FAQs");
     }
 }

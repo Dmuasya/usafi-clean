@@ -2,6 +2,8 @@ package com.dennis.usaficustomer;
 
 
 import android.Manifest;
+import android.content.Context;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Location;
@@ -10,12 +12,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
@@ -26,8 +32,14 @@ import com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -79,14 +91,21 @@ public class FAQFragment extends Fragment implements OnMapReadyCallback,
     private static final int MY_PERMISSION_REQUEST_CODE = 7192;
     private static final int PLAY_SERVICE_RES_REQUEST = 300193;
 
+    private ImageView usafiShop, usafiHome;
     private GoogleMap mMap;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
+    private boolean isUberX=false;
+    private TextView amount1, amount2;
+    int inputText, inputText2;
+
 
     private static int UPDATE_INTERVAL = 5000;
     private static int FATEST_INTERVAL = 3000;
     private static int DISPLACEMENT = 10;
+
+    private faqFragmentListener listener;
 
     FirebaseAuth mAuth;
     DatabaseReference userRef;
@@ -100,6 +119,7 @@ public class FAQFragment extends Fragment implements OnMapReadyCallback,
     MapView mMapView;
 
     //BottomsheetView
+    EditText eCost2;
     ImageView imgExpandable;
     BottomSheetUserFragment mBottomSheet;
     Button btnPickupRequest;
@@ -115,6 +135,11 @@ public class FAQFragment extends Fragment implements OnMapReadyCallback,
 
     //presence system
     DatabaseReference driverAvailable;
+
+    public interface faqFragmentListener{
+
+        void onInputBSent(CharSequence input);
+    }
 
 
     @Override
@@ -132,12 +157,97 @@ public class FAQFragment extends Fragment implements OnMapReadyCallback,
 
         mService = Common.getFCMService();
 
+        usafiShop = v.findViewById(R.id.selectedUberX);
+        usafiHome = v.findViewById(R.id.selectedUberBlack);
+        eCost2 = v.findViewById(R.id.clothes_num2);
+        amount1 = v.findViewById(R.id.amount1);
+        amount2 = v.findViewById(R.id.amount2);
 
+
+
+        eCost2.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+                //Convert the Text to String
+                String editText = eCost2.getText().toString();
+
+
+
+                try {
+                    inputText = Integer.parseInt(editText);
+                    inputText2 = Integer.parseInt(editText);
+                } catch (NumberFormatException e) {
+                    return;
+
+                }
+                inputText *= 25;
+                 inputText2 *= 20;
+                if (inputText>=250){
+                    amount1.setText(""+inputText);
+                    amount2.setText(""+inputText2);
+                }
+                else {
+                    amount1.setText("300");
+                    amount2.setText("250");
+                }
+                
+
+
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
+        usafiShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isToggle=!isUberX;
+                isUberX=true;
+                if(isToggle) {
+                    usafiShop.setImageResource(R.drawable.car_cui_select);
+                    usafiHome.setImageResource(R.drawable.car_vip);
+                }
+                btnPickupRequest.setText("REQUEST AWAY-WASH");
+//                loadAllAvailableDriver(new LatLng(currentLat, currentLng));
+            }
+        });
+
+        usafiHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isToggle=isUberX;
+                isUberX=false;
+                if(isToggle) {
+                    usafiShop.setImageResource(R.drawable.car_cui);
+                    usafiHome.setImageResource(R.drawable.car_vip_select);
+                }
+                btnPickupRequest.setText("REQUEST HOME-WASH");
+//                loadAllAvailableDriver(new LatLng(currentLat, currentLng));
+            }
+        });
 
         btnPickupRequest = v.findViewById(R.id.faq_btnPickupRequest);
         btnPickupRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                CharSequence input = null;
+                try {
+                    input = eCost2.getText();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                listener.onInputBSent(input);
+
+
                 if(!isLaundryFound)
                     requestPickupHere(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 else
@@ -151,6 +261,32 @@ public class FAQFragment extends Fragment implements OnMapReadyCallback,
 
         return v;
     }
+    public void  updateEditText(CharSequence newText){
+        try {
+            eCost2.setText(newText);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if( context instanceof FAQFragment.faqFragmentListener){
+            listener = (FAQFragment.faqFragmentListener) context;
+        }else {
+            throw new RuntimeException(context.toString() + "must implement faqFragmentListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
 
 
 
@@ -246,7 +382,7 @@ public class FAQFragment extends Fragment implements OnMapReadyCallback,
                 if(!isLaundryFound){
                     isLaundryFound = true;
                     laundryId = key;
-                    btnPickupRequest.setText("Call Laundry");
+                    btnPickupRequest.setText("Call Cleaner");
                     Toast.makeText(getActivity(),""+key, Toast.LENGTH_LONG).show();
                 }
             }
@@ -265,7 +401,7 @@ public class FAQFragment extends Fragment implements OnMapReadyCallback,
             public void onGeoQueryReady() {
                 //if still not found driver, increase distance
                 if(!isLaundryFound){
-                    radius = radius + 1;
+                    radius = radius + 3;
                     findLaundry();
                 }
             }

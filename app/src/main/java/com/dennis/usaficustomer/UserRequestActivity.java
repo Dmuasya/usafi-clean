@@ -1,7 +1,10 @@
 package com.dennis.usaficustomer;
 
 import android.app.DatePickerDialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +17,7 @@ import java.util.Calendar;
 public class UserRequestActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button btn;
+    public Fragment ProfileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +47,11 @@ public class UserRequestActivity extends AppCompatActivity implements View.OnCli
                 set(R.id.btn_delivery_time);
                 break;
             case R.id.btn_schedule_pickup:
-                //Intent intent = new Intent(UserRequestActivity.this, LoginActivity.class);
-                //startActivity(intent);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.profile_fragment, ProfileFragment).commit();
+
+//                Intent intent = new Intent(UserRequestActivity.this, FAQFragment.SavedState.class);
+//                startActivity(intent);
                 break;
 
         }

@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">#A61646</color>-->
-    <color name="colorPrimary">#0007cc</color>
+    <color name="colorPrimary">#002366</color>
     <color name="colorPrimaryDark">#00574B</color>
-<!--    <color name="colorAccent">#D81B60</color>-->
-    <color name="colorAccent">#ffffff</color>
+    <color name="colorAccent">#002366</color>
     <color name="shada">#ffffff</color>
-<!--    <color name="tomato">#f06449</color>-->
-    <color name="tomato">#0007cc</color>
-    <!--    <color name="logocolor">#c77176</color>-->
-    <color name="logocolor">#0007cc</color>
-    <!--    <color name="Flirt">#c45aa1</color>-->
-    <color name="Flirt">#0007cc</color>
+    <color name="red">#FF0000</color>
+    <color name="tomato">#002366</color>
+    <color name="logocolor">#002366</color>
+    <color name="Flirt">#002366</color>
     <color name="graylight">#e4e4e4</color>
-<!--    <color name="logo_accent">#cf566f</color>-->
-    <color name="logo_accent">#0007cc</color>
+    <color name="logo_accent">#002366</color>
     <color name="Black">#000000</color>
     <color name="gray">#d3d3d3</color>
-<!--    <color name="orange">#f58021</color>-->
-    <color name="orange">#0007cc</color>
+    <color name="orange">#002366</color>
     <color name="dividerColor">#1F000000</color>
 
     <color name="baseReleaseColor">#212121</color>

@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/nav_contract"
-        android:title="Contract"
+        android:title="Offices"
         android:icon="@drawable/contract_with_us_icon"/>
 
 

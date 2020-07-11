@@ -4,9 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment"
-    android:background="@color/shada">
+    android:background="@color/shada"
+    android:id="@+id/frag_home">
 
     <!-- TODO: Update blank fragment layout -->
+
+
     <TextView
         android:id="@+id/text"
         style="@style/Base.TextAppearance.AppCompat.Title"
@@ -14,49 +17,83 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        android:text="@string/motto" />
+        android:layout_marginTop="20dp"
+        android:text="@string/motto"
+        android:textColor="@color/colorPrimary"/>
 
-    <TextView
-        android:id="@+id/text2"
-        style="@style/Base.TextAppearance.AppCompat.Title"
+
+    <!--<TextView-->
+        <!--android:id="@+id/text3"-->
+        <!--style="@style/Base.TextAppearance.AppCompat.Title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/text"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="1dp"-->
+        <!--android:layout_marginStart="2dp"-->
+        <!--android:textColor="@color/red"-->
+        <!--android:text="@string/cost" />-->
+
+    <EditText
+        android:id="@+id/clothes_num"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@+id/text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
-        android:text="@string/motto_line2" />
-
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_bg"
+        android:drawableStart="@drawable/dirt2"
+        android:ems="14"
+        android:gravity="center"
+        android:hint="Enter number of clothes"
+        android:inputType="number"
+        android:paddingLeft="12dp"
+        android:paddingRight="24dp" />
     <EditText
         android:id="@+id/home_pickup_address"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_below="@+id/text2"
+        android:layout_below="@+id/clothes_num"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_bg"
-        android:drawableEnd="@drawable/gps"
-        android:drawableRight="@drawable/gps"
+        android:drawableStart="@drawable/apartment"
         android:ems="14"
         android:gravity="center"
-        android:hint="Enter pickup address"
+        android:hint="Enter Apartment name  "
         android:inputType="textPostalAddress"
         android:paddingLeft="12dp"
         android:paddingRight="24dp" />
-
-
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_schedule_pickup"
+        android:id="@+id/btn_insta_pickup"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/home_pickup_address"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background_selected"
+        android:text="@string/insta_pickup"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        android:textSize="17sp" />
+
+        <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_schedule_pickup"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_insta_pickup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_background_selected"
         android:text="@string/pickup"
         android:textAllCaps="false"
         android:textColor="#ffff"
         android:textSize="17sp" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/text3"/>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -133,5 +170,6 @@
             android:gravity="center"
             android:text="@string/relax" />
     </LinearLayout>
+
 
 </RelativeLayout>

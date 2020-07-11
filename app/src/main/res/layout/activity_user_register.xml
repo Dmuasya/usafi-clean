@@ -7,27 +7,30 @@
     tools:context=".UserRegisterActivity"
     android:background="@drawable/colorful">
 
-    <ImageView
-        android:id="@+id/user_register_uporer_chobi"
-        android:layout_width="164dp"
-        android:layout_height="117dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
-        android:src="@drawable/uporer_chobi" />
-
     <TextView
-        android:id="@+id/user_status"
+        android:id="@+id/user_register_uporer_chobi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_register_uporer_chobi"
-        android:layout_alignEnd="@+id/user_register_uporer_chobi"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="-32dp"
-        android:background="@color/shada"
-        android:text="Customer Register"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="0dp"
+        android:text="usafi"
         android:textColor="@color/tomato"
-        android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textSize="105dp"
+        android:textStyle="normal"
+        android:layout_centerHorizontal="true"/>
+
+    <!--<TextView-->
+        <!--android:id="@+id/user_status"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/user_register_uporer_chobi"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="-32dp"-->
+        <!--android:background="@color/shada"-->
+        <!--android:text="Register"-->
+        <!--android:textColor="@color/tomato"-->
+        <!--android:textSize="25dp"-->
+        <!--android:layout_centerHorizontal="true"/>-->
 
 
     <EditText

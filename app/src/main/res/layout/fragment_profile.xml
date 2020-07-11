@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProfileFragment"
-    android:background="@color/shada">
+    android:background="@color/shada"
+    android:id="@+id/profile_fragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -60,7 +61,7 @@
         android:layout_marginTop="13dp"
         android:gravity="center"
         android:text="Username:"
-        android:textSize="22dp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:layout_marginLeft="15dp"/>
 

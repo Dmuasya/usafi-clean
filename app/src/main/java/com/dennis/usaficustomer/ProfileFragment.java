@@ -1,17 +1,25 @@
 package com.dennis.usaficustomer;
 
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +33,12 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import com.dennis.usaficustomer.Common.Common;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -36,8 +50,13 @@ public class ProfileFragment extends Fragment {
     private CircleImageView ProfileImage;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference RootRef;
-    private FirebaseStorage firebaseStorage;
+    private DatabaseReference RootRef, mDatabaseRef;
+    private StorageReference firebaseStorage, mStorageRef;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri mImageUri;
+    private StorageTask mUploadTask;
+    private ProgressBar mProgressBar;
+
 
     String CurrentUserID;
 
@@ -58,10 +77,13 @@ public class ProfileFragment extends Fragment {
         Address = v.findViewById(R.id.profile_address);
         PhoneNo = v.findViewById(R.id.profile_phone);
         UpdateProfileButton = v.findViewById(R.id.profile_update_button);
+        ProfileImage = v.findViewById(R.id.profile_image);
 
         mAuth = FirebaseAuth.getInstance();
         CurrentUserID = mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
         RootRef.child(Common.user_customer_tbl).child(CurrentUserID)
                 .addValueEventListener(new ValueEventListener() {
@@ -86,6 +108,11 @@ public class ProfileFragment extends Fragment {
                             if ((dataSnapshot.hasChild("phoneNo"))) {
                                 String retrievePhoneNo = (String) dataSnapshot.child("phoneNo").getValue();
                                 PhoneNo.setText(retrievePhoneNo);
+
+                            }
+                            if ((dataSnapshot.hasChild("image"))) {
+                                String retrieveImage = (String) dataSnapshot.child("image").getValue();
+                                ProfileImage.setImageURI(mImageUri);
 
                             }
                         }
@@ -127,18 +154,75 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 updateProfile();
+                uploadFile();
             }
         });
+        ProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
+
 
         return v;
     }
 
-    private void updateProfile() {
 
+
+
+
+
+    private void uploadFile() {
+        if (mImageUri != null) {
+            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
+                    + ".");
+            mUploadTask = fileReference.putFile(mImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+//                                    mProgressBar.setProgress(0);
+                                }
+                            }, 500);
+//
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(UserMainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+
+    private void openFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            mImageUri = data.getData();
+            ProfileImage.setImageURI(mImageUri);
+        }
+    }
+    private void updateProfile() {
         String uname = UserName.getText().toString();
         String fname = FullName.getText().toString();
         String phone = PhoneNo.getText().toString();
         String address = Address.getText().toString();
+
+
 
         //inserting info into Fdb
         HashMap userMap = new HashMap();
@@ -147,6 +231,8 @@ public class ProfileFragment extends Fragment {
         userMap.put("phoneNo",phone);
         userMap.put("address",address);
         userMap.put("adresstosend","please select");
+
+
 
         RootRef.child(Common.user_customer_tbl).child(CurrentUserID).updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
             @Override
@@ -189,6 +275,7 @@ public class ProfileFragment extends Fragment {
                                 PhoneNo.setText(retrievePhoneNo);
 
                             }
+
                         }
 
                         if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("username")) && (dataSnapshot.hasChild("fullname")) && (dataSnapshot.hasChild("address")) && (dataSnapshot.hasChild("phoneNo")) && (dataSnapshot.hasChild("image"))) {

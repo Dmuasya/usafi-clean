@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "592919382240-hsqdsm12lnbvcte216vqmc5s1hd04dkd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dennis.usaficustomer",
+            "certificate_hash": "229b60c02514eb5f98484b65c86a409569a32293"
+          }
+        },
+        {
           "client_id": "592919382240-jv9ok6poa65le1mnnqnvati3rjggp7h6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,6 +38,49 @@
       "api_key": [
         {
           "current_key": "AIzaSyDzmJc7t2zVxij4DFtLXmvjWsy-sAhXj2s"
+        },
+        {
+          "current_key": "AIzaSyAo3kl1uZb5b4hyZxy8JbtWwZDIg7-Wj94"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592919382240-td84le7ob3dj7ff4ha59hk2e7mr00t0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592919382240:android:483c07882e0874b2e7a885",
+        "android_client_info": {
+          "package_name": "com.dennis.usafilaundry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592919382240-5ep9kvnknslfa1it2osiiflgpqv608h1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dennis.usafilaundry",
+            "certificate_hash": "66a0130fd8d87e1693c4430de2b03067df3c2ad2"
+          }
+        },
+        {
+          "client_id": "592919382240-td84le7ob3dj7ff4ha59hk2e7mr00t0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzmJc7t2zVxij4DFtLXmvjWsy-sAhXj2s"
+        },
+        {
+          "current_key": "AIzaSyAo3kl1uZb5b4hyZxy8JbtWwZDIg7-Wj94"
         }
       ],
       "services": {

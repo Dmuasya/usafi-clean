@@ -61,7 +61,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\COSEKE\AndroidStudioProjects\AndroidCustomerApp\app\src\main\res\drawable\icony.png" />
+                                      <entry key="backgroundImage" value="C:\Users\DELL\Downloads\ic_bg.png" />
+                                      <entry key="foregroundImage" value="C:\Users\DELL\Downloads\ic_top.png" />
+                                      <entry key="legacyIconShape" value="CIRCLE" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -117,6 +119,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

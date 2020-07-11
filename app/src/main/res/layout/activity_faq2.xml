@@ -63,7 +63,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="What is Digital Laundry?"
+                            android:text="What is Usafi Laundry?"
                             android:textColor="#000"
                             android:textStyle="bold" />
 
@@ -141,7 +141,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="Scheduling your pick up is merely a few clicks away on our App. Just visit play store and search “Digital Laundry” to download our Android App. In case pick-up gets delayed due to unforeseen circumstances, our team will update you before-hand."
+                            android:text="Scheduling your pick up is merely a few clicks away on our App. Just visit play store and search “Usafi” to download our Android App. In case pick-up gets delayed due to unforeseen circumstances, our team will update you before-hand."
                             android:textColor="#000" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -177,7 +177,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="Our services take one hour for laundry. If delayed for some reason our team will inform you about the delay."
+                            android:text="Our services take three hours for laundry. If delayed for some reason our team will inform you about the delay."
                             android:textColor="#000" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -204,7 +204,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="How many number of clothes are there in one kg?"
+                            android:text="How much per cloth?"
                             android:textColor="#000"
                             android:textStyle="bold" />
 
@@ -212,7 +212,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="1 kg clothes is approximately 4-6 mixed adult clothes."
+                            android:text="Ksh 25 for both adult and kids clothes."
                             android:textColor="#000" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -247,7 +247,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="Minimum charge is  \u09F3130 even if clothes are less than 3 kg."
+                            android:text="Minimum charge is  Ksh 250 even if clothes are less than 10"
                             android:textColor="#000" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -274,7 +274,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="How is the rate calculated beyond 6 kg?"
+                            android:text="How is the rate calculated beyond 20 clothes?"
                             android:textColor="#000"
                             android:textStyle="bold" />
 
@@ -282,7 +282,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="The rate is calculated at \u09F325 per kg Beyond 6 kg."
+                            android:text="The rate is calculated at 20 per kg Beyond 20 clothes."
                             android:textColor="#000" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -451,7 +451,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="How to contact Digital Laundry in case of a query/complaint about any shop or our system?"
+                            android:text="How to contact Usafi in case of a query/complaint about any shop or our system?"
                             android:textColor="#000"
                             android:textStyle="bold" />
 
@@ -459,7 +459,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="Feel free to contact us anytime! Write us at teamorion@gmail.com. We will be more than happy to hear from you."
+                            android:text="Feel free to contact us anytime! Write us at usafilaundry@gmail.com. We will be more than happy to hear from you."
                             android:textColor="#000" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>

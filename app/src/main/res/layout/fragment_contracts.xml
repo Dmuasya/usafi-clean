@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     tools:context=".ContractsFragment"
-    android:background="@drawable/colorful2">
+    android:background="@drawable/colorful">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -13,7 +13,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8609ca"
+        android:background="@color/colorPrimary"
         android:gravity="center_horizontal"
         android:paddingBottom="3dp"
         android:paddingLeft="8dp"
